@@ -6,15 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="800" Height="397">
 
     <Grid>
         <NavigationView PaneDisplayMode="LeftCompact" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                        x:Name="NavView" Loaded="NavView_Loaded" ItemInvoked="NavView_ItemInvoked" BackRequested="NavView_BackRequested" Height="768" Width="1028">
+                        x:Name="NavView" Loaded="NavView_Loaded" ItemInvoked="NavView_ItemInvoked" BackRequested="NavView_BackRequested" Width="800" Height="400">
             <NavigationView.MenuItems>
                 <NavigationViewItem Tag="meals" Icon="Account"  Content="Meals" />
                 <NavigationViewItem Tag="favorites" Icon="Favorite" Content="Favorites"/>
-                <NavigationViewItem Tag="weight" Icon="Import" Content="Weight"/>
+                <NavigationViewItem Tag="weights" Icon="Import" Content="Weight"/>
             </NavigationView.MenuItems>
 
             <ScrollViewer>
