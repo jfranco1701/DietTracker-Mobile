@@ -40,6 +40,7 @@ namespace DietTracker_UWP
             ("meals", typeof(MealsPage)),
             ("weights", typeof(WeightsPage)),
             ("favorites", typeof(FavoritesPage)),
+            ("mealadd", typeof(MealAddPage)),
 
             //("games", typeof(GamesPage)),
             //("music", typeof(MusicPage)),
@@ -144,6 +145,12 @@ namespace DietTracker_UWP
                 // SettingsItem is not part of NavView.MenuItems, and doesn't have a Tag.
                 NavView.SelectedItem = (NavigationViewItem)NavView.SettingsItem;
                 NavView.Header = "Settings";
+            }
+            else if (ContentFrame.SourcePageType == typeof(MealAddPage))
+            {
+                NavView.SelectedItem = NavView.MenuItems
+                    .OfType<NavigationViewItem>()
+                    .First(n => n.Tag.Equals("meals"));
             }
             else if (ContentFrame.SourcePageType != null)
             {

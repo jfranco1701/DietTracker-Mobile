@@ -20,16 +20,15 @@ namespace DietTracker_UWP
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MealsPage : Page
+    public sealed partial class MealAddPage : Page
     {
-        public MealsPage()
+        public MealAddPage()
         {
             this.InitializeComponent();
+
+            ListViewMealItems.DataContext = new List<String>() { "one", "Two", "Three" };
         }
 
-        void ButtonAddItems_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(MealAddPage));
-        }
+
     }
 }

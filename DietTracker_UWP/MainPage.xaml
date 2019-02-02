@@ -15,6 +15,7 @@
                 <NavigationViewItem Tag="meals" Icon="Account"  Content="Meals" />
                 <NavigationViewItem Tag="favorites" Icon="Favorite" Content="Favorites"/>
                 <NavigationViewItem Tag="weights" Icon="Import" Content="Weight"/>
+                <!--<NavigationViewItem Tag="mealadd" Icon="Import" Content="MealAdd" IsEnabled="False"/>-->
             </NavigationView.MenuItems>
 
             <ScrollViewer>

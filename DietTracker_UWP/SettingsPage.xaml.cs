@@ -28,9 +28,9 @@ namespace DietTracker_UWP
             this.InitializeComponent();
         }
 
-        void button_click(object sender, RoutedEventArgs e)
+        async void button_clickAsync(object sender, RoutedEventArgs e)
         {
-            InitializeDatabaseAsync();
+            await InitializeDatabaseAsync();
         }
 
 
