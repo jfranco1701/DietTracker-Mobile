@@ -1,0 +1,69 @@
+﻿<UserControl x:Name="root"
+    x:Class="DietTracker_UWP.FoodListControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DietTracker_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Width="700" Height="400">
+
+    <Grid>
+        <ListView x:Name="ListViewMealItems" Width="600" HorizontalAlignment="Left" Margin="40,50
+                  ,0,0" ItemsSource="{Binding ItemsSource, ElementName=root}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding FoodName}" 
+                                Margin="20,0,20,5"
+                                FontSize="14" 
+                                FontStyle="Italic" 
+                                FontWeight="SemiBold"
+                                Foreground="Black" />
+                        <TextBlock Text="{Binding Serving}" 
+                                Margin="20,0,20,5"
+                                FontSize="14" 
+                                Foreground="Black" />
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="20,0,5,8" Text="Cals: "/>
+                            <TextBlock Text="{Binding Calories}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Carb: "/>
+                            <TextBlock Text="{Binding Carbs}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Fat: "/>
+                            <TextBlock Text="{Binding Fat}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Pro: "/>
+                            <TextBlock Text="{Binding Protein}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Fbr: "/>
+                            <TextBlock Text="{Binding Fiber}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Sug: "/>
+                            <TextBlock Text="{Binding Sugars}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+                        </StackPanel>
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>
