@@ -12,11 +12,11 @@ namespace DietTracker_UWP.BO
         public String FoodName { get; set; }
         public String Manufacturer { get; set; }
         public String Serving { get; set; }
-        public int Protein { get; set; }
-        public int Sugars { get; set; }
-        public int Carbs { get; set; }
-        public int Fiber { get; set; }
-        public int Calories { get; set; }
-        public int Fat { get; set; }
+        public double Protein { get; set; }
+        public double Sugars { get; set; }
+        public double Carbs { get; set; }
+        public double Fiber { get; set; }
+        public double Calories { get; set; }
+        public double Fat { get; set; }
     }
 }

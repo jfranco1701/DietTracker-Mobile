@@ -11,7 +11,6 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="150,50,0,0" Text="Settings" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="31,30,0,0" Text="TextBox" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="497,166,0,0" VerticalAlignment="Top" Click="button_clickAsync"/>
 
     </Grid>
 </Page> 

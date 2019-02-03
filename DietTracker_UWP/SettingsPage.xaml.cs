@@ -27,55 +27,5 @@ namespace DietTracker_UWP
         {
             this.InitializeComponent();
         }
-
-        async void button_clickAsync(object sender, RoutedEventArgs e)
-        {
-            await InitializeDatabaseAsync();
-        }
-
-
-        public static async System.Threading.Tasks.Task InitializeDatabaseAsync()
-        {
-            List<int> nums = new List<int>();
-            SqliteDataReader query;
-
-            StorageFile file;
-            try
-            {
-                file = await Windows.Storage.ApplicationData.Current.LocalFolder.GetFileAsync("usda.db");
-            }
-            catch
-            {
-                StorageFile Importedfile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/usda.db"));
-                file = await Importedfile.CopyAsync(Windows.Storage.ApplicationData.Current.LocalFolder);
-            }
-
-            String path = file.Path;
-
-            using (SqliteConnection db = new SqliteConnection("Filename = " + path))
-            {
-                db.Open();
-                SqliteCommand selectCommand = new SqliteCommand("SELECT * FROM FoodItems WHERE NDBNum = 10000", db);
-                try
-                {
-                    query = selectCommand.ExecuteReader();
-                    while (query.Read())
-                    {
-                        nums.Add(Convert.ToInt32(query.GetString(0)));
-                    }
-                }
-                catch (SqliteException error)
-                {
-                    //Handle error
-                }
-
-                db.Close();
-            }
-
-            
-
-
-
-        }
     }
 }

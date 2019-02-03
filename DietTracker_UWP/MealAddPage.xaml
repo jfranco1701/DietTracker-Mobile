@@ -6,11 +6,72 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="800" Height="400">
 
     <Grid>
-        <ListView x:Name="ListViewMealItems" CanDragItems="False" CanReorderItems="False" AllowDrop="False" SelectionMode=" Single "/>
+        <TextBox x:Name="TextBoxSearch" HorizontalAlignment="Left" Margin="39,23,0,0" Text="TextBox" VerticalAlignment="Top" Header="Food Search" Width="276"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="339,46,0,0" VerticalAlignment="Top" Click="Search_ClickAsync" />
 
+        <ListView x:Name="ListViewMealItems" Width="600" HorizontalAlignment="Left" Margin="40,120,0,0" SelectionChanged="ListViewMealItems_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding FoodName}" 
+                                Margin="20,0,20,5"
+                                FontSize="14" 
+                                FontStyle="Italic" 
+                                FontWeight="SemiBold"
+                                Foreground="Black" />
+                        <TextBlock Text="{Binding Serving}" 
+                                Margin="20,0,20,5"
+                                FontSize="14" 
+                                Foreground="Black" />
 
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="20,0,5,8" Text="Cals: "/>
+                            <TextBlock Text="{Binding Calories}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Carb: "/>
+                            <TextBlock Text="{Binding Carbs}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Fat: "/>
+                            <TextBlock Text="{Binding Fat}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Pro: "/>
+                            <TextBlock Text="{Binding Protein}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Fbr: "/>
+                            <TextBlock Text="{Binding Fiber}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Sug: "/>
+                            <TextBlock Text="{Binding Sugars}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+                        </StackPanel>
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <TextBlock HorizontalAlignment="Left" Margin="41,96,0,0" Text="Matches: " TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextMatches" HorizontalAlignment="Left" Margin="111,96,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="ButtonAdd" Content="Add Selection" HorizontalAlignment="Left" Margin="608,46,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>
