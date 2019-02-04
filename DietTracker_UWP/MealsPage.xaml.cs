@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using DietTracker_UWP.BO;
+using DietTracker_UWP.DL;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,12 +24,11 @@ namespace DietTracker_UWP
     /// </summary>
     public sealed partial class MealsPage : Page
     {
-        public IList<FoodItem> Items { get; set; }
+        public IList<MealItem> BreakfastItems { get; set; }
+        public IList<MealItem> LunchItems { get; set; }
+        public IList<MealItem> DinnerItems { get; set; }
+        public IList<MealItem> SnackItems { get; set; }
 
-        List<FoodItem> lstBreakfast;
-        List<FoodItem> lstLunch;
-        List<FoodItem> lstDinner;
-        List<FoodItem> lstSnack;
 
         public MealsPage()
         {
@@ -36,27 +36,24 @@ namespace DietTracker_UWP
 
             CalPickerDate.Date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 
-            GetMealItems();
+            GetMealItemsAsync();
         }
 
-        private void GetMealItems()
+        private async void GetMealItemsAsync()
         {
-            //Get the day's meal items from the API
-            lstBreakfast = new List<FoodItem>();
-            lstLunch = new List<FoodItem>();
-            lstDinner = new List<FoodItem>();
-            lstSnack = new List<FoodItem>();
+            List<MealItem> lstMealItems;
 
-            FoodItem test = new FoodItem() { FoodName = "Test food" };
-            lstBreakfast.Add(test);
+            lstMealItems = await DietTrackerAPI.GetMealsAsync(DateTime.Now);
 
+            BreakfastItems = lstMealItems;
+            LunchItems = lstMealItems;
+            DinnerItems = lstMealItems;
+            SnackItems = lstMealItems;
 
-
-            //BreakfastFoodList.ItemsSource = lstBreakfast;
-
-            Items = lstBreakfast;
-            BreakfastFoodList.ItemsSource = Items;
-
+            BreakfastFoodList.ItemsSource = BreakfastItems;
+            LunchFoodList.ItemsSource = LunchItems;
+            DinnerFoodList.ItemsSource = DinnerItems;
+            SnackFoodList.ItemsSource = SnackItems;
         }
 
         void ButtonPrev_Click(object sender, RoutedEventArgs e)

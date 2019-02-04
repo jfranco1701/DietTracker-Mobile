@@ -123,7 +123,9 @@
       <DependentUpon>AppsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="BO\FoodItem.cs" />
+    <Compile Include="BO\MealItem.cs" />
     <Compile Include="DL\DB.cs" />
+    <Compile Include="DL\DietTrackerAPI.cs" />
     <Compile Include="FavoritesPage.xaml.cs">
       <DependentUpon>FavoritesPage.xaml</DependentUpon>
     </Compile>
@@ -208,6 +210,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.3</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

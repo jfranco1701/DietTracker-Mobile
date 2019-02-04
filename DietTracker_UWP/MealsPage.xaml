@@ -20,21 +20,21 @@
 
         <Pivot x:Name="root" Grid.Row="1" Height="300">
             <PivotItem Header="Breakfast">
-                <local:FoodListControl />
+                <local:FoodListControl x:Name="BreakfastFoodList"/>
 
             </PivotItem>
             <PivotItem Header="Lunch">
+                <local:FoodListControl x:Name="LunchFoodList"/>
 
-                <local:FoodListControl x:Name="BreakfastFoodList"/>
 
 
 
             </PivotItem>
             <PivotItem Header="Dinner">
-                <local:FoodListControl />
+                <local:FoodListControl x:Name="DinnerFoodList"/>
             </PivotItem>
             <PivotItem Header="Snack">
-                <local:FoodListControl />
+                <local:FoodListControl x:Name="SnackFoodList"/>
             </PivotItem>
         </Pivot>
         <Button Content="Add - Favorite" HorizontalAlignment="Left" Margin="426,11,0,0" VerticalAlignment="Top"/>
