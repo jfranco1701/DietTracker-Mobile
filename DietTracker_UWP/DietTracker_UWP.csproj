@@ -122,8 +122,11 @@
     <Compile Include="AppsPage.xaml.cs">
       <DependentUpon>AppsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BO\Favorite.cs" />
     <Compile Include="BO\FoodItem.cs" />
     <Compile Include="BO\MealItem.cs" />
+    <Compile Include="BO\MealTotal.cs" />
+    <Compile Include="BO\Weight.cs" />
     <Compile Include="DL\DB.cs" />
     <Compile Include="DL\DietTrackerAPI.cs" />
     <Compile Include="FavoritesPage.xaml.cs">

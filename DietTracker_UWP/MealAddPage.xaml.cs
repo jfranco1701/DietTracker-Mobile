@@ -63,5 +63,11 @@ namespace DietTracker_UWP
                 ButtonAdd.IsEnabled = false;
             }
         }
+
+        async void ButtonAdd_ClickAsync(object sender, RoutedEventArgs e)
+        {
+
+
+        }
     }
 }
