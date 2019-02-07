@@ -185,6 +185,9 @@ namespace DietTracker_UWP.DL
 
         public static async void AddWeight(int UserId, double UserWeight, DateTime WeightDate)
         {
+            var content = new StringContent(JsonConvert.SerializeObject(
+                new { userid = UserId, userweight = UserWeight, weightdate = WeightDate }), Encoding.UTF8, "application/json");
+
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
