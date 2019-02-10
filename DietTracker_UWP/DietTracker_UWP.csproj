@@ -126,14 +126,20 @@
     <Compile Include="BO\FoodItem.cs" />
     <Compile Include="BO\MealItem.cs" />
     <Compile Include="BO\MealTotal.cs" />
+    <Compile Include="BO\User.cs" />
     <Compile Include="BO\Weight.cs" />
     <Compile Include="DL\DB.cs" />
     <Compile Include="DL\DietTrackerAPI.cs" />
+    <Compile Include="DL\LocalStore.cs" />
+    <Compile Include="DL\Token.cs" />
     <Compile Include="FavoritesPage.xaml.cs">
       <DependentUpon>FavoritesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="FoodListControl.xaml.cs">
       <DependentUpon>FoodListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -185,6 +191,10 @@
     <Page Include="FoodListControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>

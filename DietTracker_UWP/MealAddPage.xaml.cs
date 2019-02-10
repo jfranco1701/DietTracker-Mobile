@@ -66,8 +66,13 @@ namespace DietTracker_UWP
 
         async void ButtonAdd_ClickAsync(object sender, RoutedEventArgs e)
         {
+            //LocalStore.AddSetting("Token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Impkb2VAZW1haWwuY29tIiwiZXhwIjoxNTQ5NzU2MjE2LCJlbWFpbCI6Impkb2VAZW1haWwuY29tIn0.xYvGka8BmqRLlzMniACN3d7DTWsss9wRZ2-2wn0k-3I");
+            //LocalStore.AddSetting("UserId", "2");
 
 
+
+            String result = await DietTrackerAPI.AddMeal(Convert.ToInt32(LocalStore.GetSetting("UserId")), "addtest", 1.0, 1.0, 1.0, 1.1, 1.1, 1.1, "My Measure", 
+                new DateTime(2019,2,9), "Lunch", 1, LocalStore.GetSetting("Token"));
         }
     }
 }

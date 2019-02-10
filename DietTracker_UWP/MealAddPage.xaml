@@ -72,6 +72,6 @@
 
         <TextBlock HorizontalAlignment="Left" Margin="41,96,0,0" Text="Matches: " TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="TextMatches" HorizontalAlignment="Left" Margin="111,96,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button x:Name="ButtonAdd" Content="Add Selection" HorizontalAlignment="Left" Margin="608,46,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="ButtonAdd" Content="Add Selection" HorizontalAlignment="Left" Margin="608,46,0,0" VerticalAlignment="Top" Click="ButtonAdd_ClickAsync"/>
     </Grid>
 </Page>

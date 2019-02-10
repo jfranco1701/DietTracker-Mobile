@@ -12,6 +12,8 @@ namespace DietTracker_UWP.DL
 {
     public static class DietTrackerAPI
     {
+        const String BaseURL = "http://Diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/";
+
         public static async System.Threading.Tasks.Task<List<MealItem>> GetMealsAsync(DateTime MealDate)
         {
             List<MealItem> lstMealItems = new List<MealItem>();
@@ -89,18 +91,72 @@ namespace DietTracker_UWP.DL
             return lstMealItems;
         }
 
+        public static async Task<User> Login(String Username, String Password)
+        {
+            User user;
+
+            using (var client = new HttpClient())
+            {
+                var content = new StringContent(JsonConvert.SerializeObject(
+                   new
+                   {
+                       username = Username,
+                       password = Password
+                   }), Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync(BaseURL + "api/login/", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+
+                    user = GetUserInfo(result);
+                }
+                else
+                {
+                    user = null;
+                }
+            }
+
+            return user;
+        }
+
+        private static User GetUserInfo(String result)
+        {
+            User user;
+            user = JsonConvert.DeserializeObject<User>(result);
+
+            GetTokenInfo(ref user);
+            return user;
+        }
+
+        private static void GetTokenInfo(ref User user)
+        {
+            Token token;
+            String[] tokenParts = user.token.Split(".");
+
+            var base64EncodedBytes = System.Convert.FromBase64String(tokenParts[1].ToString() + "=");
+
+            token = JsonConvert.DeserializeObject<Token>(System.Text.Encoding.UTF8.GetString(base64EncodedBytes));
+
+            user.userid = token.user_id;
+            user.username = token.username;
+            user.email = token.email;
+            user.tokenExpires = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc).AddSeconds(token.exp).ToLocalTime();
+        }
+
         #region Meals
 
-        public static async Task<List<MealItem>> GetMeals(DateTime MealDate, String MealType)
+        public static async Task<List<MealItem>> GetMeals(DateTime MealDate, String MealType, String Token)
         {
             List<MealItem> lstMealItems;
 
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Impkb2VAZW1haWwuY29tIiwiZXhwIjoxNTQ5MjUyNjY0LCJlbWFpbCI6Impkb2VAZW1haWwuY29tIn0.PtsNaGq52P1K7bLxbJfI0JF0hz1clH_vYoJe9fRLeJI");
+                    new AuthenticationHeaderValue("Bearer", Token);
                 var response =
-                    await client.GetStringAsync("http://Diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/meals/" +
+                    await client.GetStringAsync(BaseURL + "api/meals/" +
                       "?mealdate=" + MealDate + "&mealtype=" + MealType);
 
                 lstMealItems = JsonConvert.DeserializeObject<List<MealItem>>(response);
@@ -109,16 +165,16 @@ namespace DietTracker_UWP.DL
             return lstMealItems;
         }
 
-        public static async Task<MealTotal> GetMealTotals(DateTime MealDate)
+        public static async Task<MealTotal> GetMealTotals(DateTime MealDate, String Token)
         {
             MealTotal objMealTotal;
 
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Impkb2VAZW1haWwuY29tIiwiZXhwIjoxNTQ5MjUyNjY0LCJlbWFpbCI6Impkb2VAZW1haWwuY29tIn0.PtsNaGq52P1K7bLxbJfI0JF0hz1clH_vYoJe9fRLeJI");
+                    new AuthenticationHeaderValue("Bearer", Token);
                 var response =
-                    await client.GetStringAsync("http://Diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/meals/" +
+                    await client.GetStringAsync(BaseURL + "api/meals/" +
                       "totals/?mealdate=" + MealDate);
 
                 objMealTotal = JsonConvert.DeserializeObject<MealTotal>(response);
@@ -127,27 +183,43 @@ namespace DietTracker_UWP.DL
             return objMealTotal;
         }
 
-        public static async void DeleteMeal(int Id)
+        public static async void DeleteMeal(int Id, String Token)
         {
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Impkb2VAZW1haWwuY29tIiwiZXhwIjoxNTQ5MjUyNjY0LCJlbWFpbCI6Impkb2VAZW1haWwuY29tIn0.PtsNaGq52P1K7bLxbJfI0JF0hz1clH_vYoJe9fRLeJI");
-                var response = await client.DeleteAsync("http://Diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/meals/" +
+                    new AuthenticationHeaderValue("Bearer", Token);
+                var response = await client.DeleteAsync(BaseURL + "api/meals/" +
                         Id + "/");
             }
         }
         
-        public static async void AddMeal(int UserId, String FoodName, int CaloriesCount, int FatCount, int CarbsCount, 
-            int FiberCount, int SugarsCount, int ProteinCount, String MeasureAmt, DateTime MealDate, String MealType, 
-            int Quantity)
+        public static async Task<String> AddMeal(int UserId, String FoodName, Double CaloriesCount, Double FatCount, Double CarbsCount,
+            Double FiberCount, Double SugarsCount, Double ProteinCount, String MeasureAmt, DateTime MealDate, String MealType, 
+            int Quantity, String Token)
         {
+            var content = new StringContent(JsonConvert.SerializeObject(
+                new { userid = UserId,
+                      foodname = FoodName,
+                      calories = CaloriesCount,
+                      fat = FatCount,
+                      carbs = CarbsCount,
+                      protein = ProteinCount,
+                      fiber = FiberCount,
+                      sugars = SugarsCount,
+                      measure = MeasureAmt,
+                      mealdate = MealDate.Year.ToString() + "-" + MealDate.Month.ToString().PadLeft(2,'0') + "-" + MealDate.Day.ToString().PadLeft(2, '0'),
+                      mealtype = MealType,
+                      quantity = Quantity
+                     }), Encoding.UTF8, "application/json");
+
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Impkb2VAZW1haWwuY29tIiwiZXhwIjoxNTQ5MjUyNjY0LCJlbWFpbCI6Impkb2VAZW1haWwuY29tIn0.PtsNaGq52P1K7bLxbJfI0JF0hz1clH_vYoJe9fRLeJI");
-                var result = await client.PostAsync("http://Diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/meals/", content);
+                    new AuthenticationHeaderValue("Bearer", Token);
+                var result = await client.PostAsync(BaseURL + "api/meals/", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
+                return resultContent;
             }
         }
 
@@ -155,16 +227,16 @@ namespace DietTracker_UWP.DL
 
         #region Weight
 
-        public static async Task<List<Weight>> GetWeights()
+        public static async Task<List<Weight>> GetWeights(String Token)
         {
             List<Weight> lstWeights;
 
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Impkb2VAZW1haWwuY29tIiwiZXhwIjoxNTQ5MjUyNjY0LCJlbWFpbCI6Impkb2VAZW1haWwuY29tIn0.PtsNaGq52P1K7bLxbJfI0JF0hz1clH_vYoJe9fRLeJI");
+                    new AuthenticationHeaderValue("Bearer", Token);
                 var response =
-                    await client.GetStringAsync("http://diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/weights/");
+                    await client.GetStringAsync(BaseURL + "api/weights/");
 
                 lstWeights = JsonConvert.DeserializeObject<List<Weight>>(response);
             }
@@ -172,18 +244,18 @@ namespace DietTracker_UWP.DL
             return lstWeights;
         }
 
-        public static async void DeleteWeight(int Id)
+        public static async void DeleteWeight(int Id, String Token)
         {
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Impkb2VAZW1haWwuY29tIiwiZXhwIjoxNTQ5MjUyNjY0LCJlbWFpbCI6Impkb2VAZW1haWwuY29tIn0.PtsNaGq52P1K7bLxbJfI0JF0hz1clH_vYoJe9fRLeJI");
-                var response = await client.DeleteAsync("http://Diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/weights/" +
+                    new AuthenticationHeaderValue("Bearer", Token);
+                var response = await client.DeleteAsync(BaseURL + "api/weights/" +
                         Id + "/");
             }
         }
 
-        public static async void AddWeight(int UserId, double UserWeight, DateTime WeightDate)
+        public static async void AddWeight(int UserId, double UserWeight, DateTime WeightDate, String Token)
         {
             var content = new StringContent(JsonConvert.SerializeObject(
                 new { userid = UserId, userweight = UserWeight, weightdate = WeightDate }), Encoding.UTF8, "application/json");
@@ -191,8 +263,8 @@ namespace DietTracker_UWP.DL
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Impkb2VAZW1haWwuY29tIiwiZXhwIjoxNTQ5MjUyNjY0LCJlbWFpbCI6Impkb2VAZW1haWwuY29tIn0.PtsNaGq52P1K7bLxbJfI0JF0hz1clH_vYoJe9fRLeJI");
-                var result = await client.PostAsync("http://Diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/weights/", content);
+                    new AuthenticationHeaderValue("Bearer", Token);
+                var result = await client.PostAsync(BaseURL + "api/weights/", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
             }
         }
@@ -201,16 +273,16 @@ namespace DietTracker_UWP.DL
 
         #region Favorites
 
-        public static async Task<List<Favorite>> GetFavorites()
+        public static async Task<List<Favorite>> GetFavorites(String Token)
         {
             List<Favorite> lstFavorites;
 
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Impkb2VAZW1haWwuY29tIiwiZXhwIjoxNTQ5MjUyNjY0LCJlbWFpbCI6Impkb2VAZW1haWwuY29tIn0.PtsNaGq52P1K7bLxbJfI0JF0hz1clH_vYoJe9fRLeJI");
+                    new AuthenticationHeaderValue("Bearer", Token);
                 var response =
-                    await client.GetStringAsync("http://diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/favorites/");
+                    await client.GetStringAsync(BaseURL + "api/favorites/");
 
                 lstFavorites = JsonConvert.DeserializeObject<List<Favorite>>(response);
             }
@@ -218,25 +290,39 @@ namespace DietTracker_UWP.DL
             return lstFavorites;
         }
 
-        public static async void DeleteFavorite(int Id)
+        public static async void DeleteFavorite(int Id, String Token)
         {
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Impkb2VAZW1haWwuY29tIiwiZXhwIjoxNTQ5MjUyNjY0LCJlbWFpbCI6Impkb2VAZW1haWwuY29tIn0.PtsNaGq52P1K7bLxbJfI0JF0hz1clH_vYoJe9fRLeJI");
-                var response = await client.DeleteAsync("http://Diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/Favorites/" +
+                    new AuthenticationHeaderValue("Bearer", Token);
+                var response = await client.DeleteAsync(BaseURL + "api/Favorites/" +
                         Id + "/");
             }
         }
 
         public static async void AddFavorite(int UserId, String FoodName, int CaloriesCount, int FatCount, int CarbsCount,
-            int FiberCount, int SugarsCount, int ProteinCount, String MeasureAmt, DateTime MealDate)
+            int FiberCount, int SugarsCount, int ProteinCount, String MeasureAmt, String Token)
         {
+            var content = new StringContent(JsonConvert.SerializeObject(
+                 new
+                 {
+                     userid = UserId,
+                     foodname = FoodName,
+                     calories = CaloriesCount,
+                     fat = FatCount,
+                     carbs = CarbsCount,
+                     protein = ProteinCount,
+                     fiber = FiberCount,
+                     sugars = SugarsCount,
+                     measure = MeasureAmt
+                 }), Encoding.UTF8, "application/json");
+
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Impkb2VAZW1haWwuY29tIiwiZXhwIjoxNTQ5MjUyNjY0LCJlbWFpbCI6Impkb2VAZW1haWwuY29tIn0.PtsNaGq52P1K7bLxbJfI0JF0hz1clH_vYoJe9fRLeJI");
-                var result = await client.PostAsync("http://Diettracker-env.yhkmwyss9b.us-east-2.elasticbeanstalk.com/api/Favorites/", content);
+                    new AuthenticationHeaderValue("Bearer", Token);
+                var result = await client.PostAsync(BaseURL + "api/Favorites/", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
             }
         }
