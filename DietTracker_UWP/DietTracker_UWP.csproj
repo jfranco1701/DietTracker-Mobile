@@ -122,6 +122,7 @@
     <Compile Include="AppsPage.xaml.cs">
       <DependentUpon>AppsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BO\AddMealParams.cs" />
     <Compile Include="BO\Favorite.cs" />
     <Compile Include="BO\FoodItem.cs" />
     <Compile Include="BO\MealItem.cs" />

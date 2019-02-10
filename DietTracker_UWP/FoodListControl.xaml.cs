@@ -45,5 +45,7 @@ namespace DietTracker_UWP
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+   
     }
 }

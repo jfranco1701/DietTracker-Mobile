@@ -25,6 +25,19 @@ namespace DietTracker_UWP
     public sealed partial class MealAddPage : Page
     {
         List<FoodItem> lstFoodItems = new List<FoodItem>();
+        FoodItem SelectedItem;
+        String MealType;
+        DateTime MealDate;
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            var parameters = (AddMealParams)e.Parameter;
+
+            MealDate = parameters.MealDate;
+            MealType = parameters.MealType;
+        }
 
         public MealAddPage()
         {
@@ -57,22 +70,20 @@ namespace DietTracker_UWP
             if (ListViewMealItems.SelectedIndex >= 0)
             {
                 ButtonAdd.IsEnabled = true;
+                SelectedItem = (FoodItem)e.AddedItems?.FirstOrDefault();
             }
             else
             {
                 ButtonAdd.IsEnabled = false;
+                SelectedItem = null;
             }
         }
 
         async void ButtonAdd_ClickAsync(object sender, RoutedEventArgs e)
         {
-            //LocalStore.AddSetting("Token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Impkb2VAZW1haWwuY29tIiwiZXhwIjoxNTQ5NzU2MjE2LCJlbWFpbCI6Impkb2VAZW1haWwuY29tIn0.xYvGka8BmqRLlzMniACN3d7DTWsss9wRZ2-2wn0k-3I");
-            //LocalStore.AddSetting("UserId", "2");
-
-
-
-            String result = await DietTrackerAPI.AddMeal(Convert.ToInt32(LocalStore.GetSetting("UserId")), "addtest", 1.0, 1.0, 1.0, 1.1, 1.1, 1.1, "My Measure", 
-                new DateTime(2019,2,9), "Lunch", 1, LocalStore.GetSetting("Token"));
+            String result = await DietTrackerAPI.AddMeal(Convert.ToInt32(LocalStore.GetSetting("UserId")), SelectedItem.FoodName, SelectedItem.Calories,
+                SelectedItem.Fat, SelectedItem.Carbs, SelectedItem.Fiber, SelectedItem.Sugars, SelectedItem.Protein, SelectedItem.Serving, 
+                MealDate, MealType, 1, LocalStore.GetSetting("Token"));
         }
     }
 }

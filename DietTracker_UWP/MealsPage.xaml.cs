@@ -70,7 +70,11 @@ namespace DietTracker_UWP
 
         void ButtonAddItems_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MealAddPage));
+             AddMealParams parameters = new AddMealParams();
+            parameters.MealType = ((PivotItem)root.SelectedItem).Header.ToString();
+            parameters.MealDate = CalPickerDate.Date.Value.DateTime;
+
+            Frame.Navigate(typeof(MealAddPage), parameters);
         }
     }
 }
