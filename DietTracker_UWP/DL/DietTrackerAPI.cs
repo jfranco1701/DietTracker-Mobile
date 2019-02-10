@@ -157,7 +157,8 @@ namespace DietTracker_UWP.DL
                     new AuthenticationHeaderValue("Bearer", Token);
                 var response =
                     await client.GetStringAsync(BaseURL + "api/meals/" +
-                      "?mealdate=" + MealDate + "&mealtype=" + MealType);
+                      "?mealdate=" + MealDate.Year.ToString() + "-" + MealDate.Month.ToString().PadLeft(2, '0') + "-" + 
+                        MealDate.Day.ToString().PadLeft(2, '0') + "&mealtype=" + MealType);
 
                 lstMealItems = JsonConvert.DeserializeObject<List<MealItem>>(response);
             }

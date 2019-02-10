@@ -40,6 +40,9 @@ namespace DietTracker_UWP
 
             if(user != null)
             {
+                LocalStore.AddSetting("UserID", user.userid.ToString());
+                LocalStore.AddSetting("Token", user.token);
+
                 Frame.Navigate(typeof(MainPage));
             }
             else

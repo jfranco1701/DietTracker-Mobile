@@ -45,10 +45,10 @@ namespace DietTracker_UWP
 
             lstMealItems = await DietTrackerAPI.GetMealsAsync(DateTime.Now);
 
-            BreakfastItems = lstMealItems;
-            LunchItems = lstMealItems;
-            DinnerItems = lstMealItems;
-            SnackItems = lstMealItems;
+            BreakfastItems = await DietTrackerAPI.GetMeals(CalPickerDate.Date.Value.DateTime, "Breakfast", LocalStore.GetSetting("Token"));
+            LunchItems = await DietTrackerAPI.GetMeals(CalPickerDate.Date.Value.DateTime, "Lunch", LocalStore.GetSetting("Token"));
+            DinnerItems = await DietTrackerAPI.GetMeals(CalPickerDate.Date.Value.DateTime, "Dinner", LocalStore.GetSetting("Token"));
+            SnackItems = await DietTrackerAPI.GetMeals(CalPickerDate.Date.Value.DateTime, "Snack", LocalStore.GetSetting("Token"));
 
             BreakfastFoodList.ItemsSource = BreakfastItems;
             LunchFoodList.ItemsSource = LunchItems;
@@ -59,11 +59,13 @@ namespace DietTracker_UWP
         void ButtonPrev_Click(object sender, RoutedEventArgs e)
         {
             CalPickerDate.Date = CalPickerDate.Date.Value.AddDays(-1);
+            GetMealItemsAsync();
         }
 
         void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
             CalPickerDate.Date = CalPickerDate.Date.Value.AddDays(1);
+            GetMealItemsAsync();
         }
 
         void ButtonAddItems_Click(object sender, RoutedEventArgs e)
