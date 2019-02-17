@@ -33,10 +33,6 @@ namespace DietTracker_UWP
         public MealsPage()
         {
             this.InitializeComponent();
-
-            CalPickerDate.Date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-
-            GetMealItemsAsync();
         }
 
         private async void GetMealItemsAsync()
@@ -75,6 +71,40 @@ namespace DietTracker_UWP
             parameters.MealDate = CalPickerDate.Date.Value.DateTime;
 
             Frame.Navigate(typeof(MealAddPage), parameters);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (e.Parameter != null)
+            {
+                var parameters = (AddMealParams)e.Parameter;
+
+                DateTime MealDate = parameters.MealDate;
+                String MealType = parameters.MealType;
+
+                CalPickerDate.Date = MealDate;
+
+                switch (MealType)
+                {
+                    case "Snack": root.SelectedIndex = 3;
+                        break;
+                    case "Dinner": root.SelectedIndex = 2;
+                        break;
+                    case "Lunch": root.SelectedIndex = 1;
+                        break;
+                    default: root.SelectedIndex = 0;
+                        break;
+                }
+            }
+            else
+            {
+                CalPickerDate.Date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                root.SelectedIndex = 0;
+            }
+
+            GetMealItemsAsync();
         }
     }
 }

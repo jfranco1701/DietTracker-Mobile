@@ -88,7 +88,11 @@ namespace DietTracker_UWP
                 SelectedItem.Fat, SelectedItem.Carbs, SelectedItem.Fiber, SelectedItem.Sugars, SelectedItem.Protein, SelectedItem.Serving,
                 MealDate, MealType, Convert.ToInt32(TextQty.Text), LocalStore.GetSetting("Token"));
 
-                Frame.GoBack();
+                AddMealParams parameters = new AddMealParams();
+                parameters.MealType = MealType;
+                parameters.MealDate = MealDate;
+
+                Frame.Navigate(typeof(MealsPage), parameters);
             }
             else
             {
