@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="800" Height="400">
 
     <Grid>
-        <TextBox x:Name="TextBoxSearch" HorizontalAlignment="Left" Margin="39,23,0,0" Text="TextBox" VerticalAlignment="Top" Header="Food Search" Width="276"/>
+        <TextBox x:Name="TextBoxSearch" HorizontalAlignment="Left" Margin="39,23,0,0" Text="TextBox" VerticalAlignment="Top" Header="Description" Width="276"/>
         <Button Content="Search" HorizontalAlignment="Left" Margin="339,46,0,0" VerticalAlignment="Top" Click="Search_ClickAsync" />
 
         <ListView x:Name="ListViewMealItems" Width="600" HorizontalAlignment="Left" Margin="40,120,0,0" SelectionChanged="ListViewMealItems_SelectionChanged">
@@ -72,6 +72,33 @@
 
         <TextBlock HorizontalAlignment="Left" Margin="41,96,0,0" Text="Matches: " TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="TextMatches" HorizontalAlignment="Left" Margin="111,96,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button x:Name="ButtonAdd" Content="Add Selection" HorizontalAlignment="Left" Margin="608,46,0,0" VerticalAlignment="Top" Click="ButtonAdd_ClickAsync"/>
+
+
+
+
+
+        <Button x:Name="ButtonAdd" Content="Add Selected" HorizontalAlignment="Left" Margin="600,46,0,0" VerticalAlignment="Top" 
+                Click="ShowSaveContentDialogButton_Click"/>
+
+
+
+        <ContentDialog x:Name="SaveContextDialog" Title="Save Item"
+           PrimaryButtonText="Save" IsPrimaryButtonEnabled="True"
+           CloseButtonText="Cancel" Opened="SaveContextDialog_Opened">
+            <StackPanel Margin="0,20,0,0">
+                <TextBlock HorizontalAlignment="Center" FontWeight="Bold">Quantity</TextBlock>
+                <Grid>
+                    <Button x:Name="ButtonQtySubtract" Width="32" Height="32" HorizontalAlignment="Left" Margin="30,10,0,0" 
+                            VerticalAlignment="Top" Content="-" Click="ButtonQtySubstract_Click" FontWeight="Bold" FontSize="14"/>
+                    <Button x:Name="ButtonQtyAdd" HorizontalAlignment="Right" Margin="0,10,30,0" VerticalAlignment="Top" Width="32" Height="32" 
+                            Content="+" Click="ButtonQtyAdd_Click" FontWeight="Bold" FontSize="14"/>
+                    <TextBox x:Name="TextQty" Width="65" HorizontalAlignment="Center" Margin="0,10,0,0" IsReadOnly="True"/>
+                </Grid>
+
+                <CheckBox x:Name="CheckAddFavorites" Margin="0,50,0,20" HorizontalAlignment="Center">Add to my favorites</CheckBox>
+            </StackPanel>
+
+        </ContentDialog>
+
     </Grid>
 </Page>

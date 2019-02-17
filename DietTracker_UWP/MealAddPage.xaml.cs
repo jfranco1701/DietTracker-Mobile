@@ -46,7 +46,7 @@ namespace DietTracker_UWP
             ListViewMealItems.ItemsSource = lstFoodItems;
 
             TextBoxSearch.Text = "";
-            ButtonAdd.IsEnabled = false;      
+            ButtonAdd.IsEnabled = false;
         }
 
         async void Search_ClickAsync(object sender, RoutedEventArgs e)
@@ -79,11 +79,53 @@ namespace DietTracker_UWP
             }
         }
 
-        async void ButtonAdd_ClickAsync(object sender, RoutedEventArgs e)
+        private async void ShowSaveContentDialogButton_Click(object sender, RoutedEventArgs e)
         {
-            String result = await DietTrackerAPI.AddMeal(Convert.ToInt32(LocalStore.GetSetting("UserId")), SelectedItem.FoodName, SelectedItem.Calories,
-                SelectedItem.Fat, SelectedItem.Carbs, SelectedItem.Fiber, SelectedItem.Sugars, SelectedItem.Protein, SelectedItem.Serving, 
-                MealDate, MealType, 1, LocalStore.GetSetting("Token"));
+            ContentDialogResult result = await SaveContextDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                await DietTrackerAPI.AddMeal(Convert.ToInt32(LocalStore.GetSetting("UserId")), SelectedItem.FoodName, SelectedItem.Calories,
+                SelectedItem.Fat, SelectedItem.Carbs, SelectedItem.Fiber, SelectedItem.Sugars, SelectedItem.Protein, SelectedItem.Serving,
+                MealDate, MealType, Convert.ToInt32(TextQty.Text), LocalStore.GetSetting("Token"));
+
+                Frame.GoBack();
+            }
+            else
+            {
+                // User pressed Cancel, ESC, or the back arrow.
+            }
+        }
+
+        private void SaveContextDialog_Opened(ContentDialog sender, ContentDialogOpenedEventArgs args)
+        {
+            // Ensure that the check box is unchecked each time the dialog opens.
+            CheckAddFavorites.IsChecked = false;
+            TextQty.Text = "1";
+        }
+
+        private void ButtonQtyAdd_Click(object sender, RoutedEventArgs e)
+        {
+            int Quantity = Convert.ToInt32(TextQty.Text);
+
+            if (Quantity < 10)
+            {
+                Quantity++;
+            }
+
+            TextQty.Text = Quantity.ToString();
+        }
+
+        private void ButtonQtySubstract_Click(object sender, RoutedEventArgs e)
+        {
+            int Quantity = Convert.ToInt32(TextQty.Text);
+
+            if (Quantity > 1)
+            {
+                Quantity--;
+            }
+
+            TextQty.Text = Quantity.ToString();
         }
     }
 }
+;

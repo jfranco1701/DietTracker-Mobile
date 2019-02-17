@@ -32,13 +32,22 @@ namespace DietTracker_UWP
             PassBoxPassword.Password = "password";
 
             TextInvalid.Visibility = Visibility.Collapsed;
+            TextLogin.Visibility = Visibility.Collapsed;
+            ButtonLogin.Visibility = Visibility.Visible;
+            ProgressLogin.Visibility = Visibility.Collapsed;
+            
         }
 
         async void ButtonLogin_ClickAsync(object sender, RoutedEventArgs e)
         {
+            ProgressLogin.IsActive = true;
+            ProgressLogin.Visibility = Visibility.Visible;
+            ButtonLogin.Visibility = Visibility.Collapsed;
+            TextLogin.Visibility = Visibility.Visible;
+
             User user = await DietTrackerAPI.Login(TextBoxEmail.Text, PassBoxPassword.Password);
 
-            if(user != null)
+            if (user != null)
             {
                 LocalStore.AddSetting("UserID", user.userid.ToString());
                 LocalStore.AddSetting("Token", user.token);
@@ -48,6 +57,10 @@ namespace DietTracker_UWP
             else
             {
                 TextInvalid.Visibility = Visibility.Visible;
+                ProgressLogin.IsActive = false;
+                ProgressLogin.Visibility = Visibility.Collapsed;
+                ButtonLogin.Visibility = Visibility.Visible;
+                TextLogin.Visibility = Visibility.Collapsed;
             }
 
         }
