@@ -217,18 +217,18 @@ namespace DietTracker_UWP.DL
             return lstFavorites;
         }
 
-        public static async void DeleteFavorite(int Id, String Token)
+        public static async Task DeleteFavorite(int Id, String Token)
         {
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Bearer", Token);
-                var response = await client.DeleteAsync(BaseURL + "api/Favorites/" +
+                var response = await client.DeleteAsync(BaseURL + "api/favorites/" +
                         Id + "/");
             }
         }
 
-        public static async void AddFavorite(int UserId, String FoodName, int CaloriesCount, int FatCount, int CarbsCount,
+        public static async Task AddFavorite(int UserId, String FoodName, int CaloriesCount, int FatCount, int CarbsCount,
             int FiberCount, int SugarsCount, int ProteinCount, String MeasureAmt, String Token)
         {
             var content = new StringContent(JsonConvert.SerializeObject(

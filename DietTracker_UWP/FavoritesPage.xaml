@@ -8,5 +8,69 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="800" Height="400">
 
-    <Grid/>
+    <Grid>
+        <ListView x:Name="ListViewFavorites" Width="600" HorizontalAlignment="Left" Margin="40,50,0,0" 
+                  ItemsSource="{Binding FavoritesSource, ElementName=root}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Width="560">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Width="494">
+                                <TextBlock Text="{Binding foodname}" 
+                                        Margin="20,0,20,5"
+                                        FontSize="14" 
+                                        FontStyle="Italic" 
+                                        FontWeight="SemiBold"
+                                        Foreground="Black" />
+                                <TextBlock Text="{Binding measure}" 
+                                    Margin="20,0,20,5"
+                                    FontSize="14" 
+                                    Foreground="Black" />
+                            </StackPanel>
+                            <Button FontFamily="Segoe MDL2 Assets" Content="&#xE74D;" Tag="{Binding id}" Click="ButtonDeleteAsync_Click"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="20,0,5,8" Text="Cals: "/>
+                            <TextBlock Text="{Binding calories}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black"  />
+
+                            <TextBlock Margin="20,0,5,8" Text="Carb: "/>
+                            <TextBlock Text="{Binding carbs}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Fat: "/>
+                            <TextBlock Text="{Binding fat}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Pro: "/>
+                            <TextBlock Text="{Binding protein}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Fbr: "/>
+                            <TextBlock Text="{Binding fiber}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+
+                            <TextBlock Margin="20,0,5,8" Text="Sug: "/>
+                            <TextBlock Text="{Binding sugars}" 
+                                Margin="0,0,0,8"
+                                FontSize="14"
+                                Foreground="Black" />
+                        </StackPanel>
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </Page>

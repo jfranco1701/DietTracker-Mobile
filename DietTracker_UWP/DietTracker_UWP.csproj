@@ -148,6 +148,9 @@
     <Compile Include="MealAddPage.xaml.cs">
       <DependentUpon>MealAddPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MealFavoriteAddPage.xaml.cs">
+      <DependentUpon>MealFavoriteAddPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MealsPage.xaml.cs">
       <DependentUpon>MealsPage.xaml</DependentUpon>
     </Compile>
@@ -202,6 +205,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MealAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MealFavoriteAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
