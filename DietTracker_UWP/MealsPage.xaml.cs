@@ -46,10 +46,6 @@ namespace DietTracker_UWP
 
         private async void GetMealItemsAsync()
         {
-            List<MealItem> lstMealItems;
-
-            lstMealItems = await DietTrackerAPI.GetMealsAsync(DateTime.Now);
-
             BreakfastItems = await DietTrackerAPI.GetMeals(CalPickerDate.Date.Value.DateTime, "Breakfast", LocalStore.GetSetting("Token"));
             LunchItems = await DietTrackerAPI.GetMeals(CalPickerDate.Date.Value.DateTime, "Lunch", LocalStore.GetSetting("Token"));
             DinnerItems = await DietTrackerAPI.GetMeals(CalPickerDate.Date.Value.DateTime, "Dinner", LocalStore.GetSetting("Token"));

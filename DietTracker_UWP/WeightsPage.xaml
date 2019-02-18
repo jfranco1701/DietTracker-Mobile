@@ -2,14 +2,37 @@
     x:Class="DietTracker_UWP.WeightsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:DietTracker_UWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:DietTracker_UWP"
+    
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="800" Height="400">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="800" Height="400" FontFamily="Segoe UI">
 
-    <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="222,103,0,0" Text="TextBox" VerticalAlignment="Top"/>
+    <Page.Resources>
+        <local:DateToStringConverter x:Key="DateToStringConverterKey"></local:DateToStringConverter>
+    </Page.Resources>
 
+    <Grid Width="700" HorizontalAlignment="Left">
+        <ListView x:Name="ListViewWeights" Width="365" HorizontalAlignment="Left" Margin="40,50,0,0" 
+                  ItemsSource="{Binding WeightSource, ElementName=root}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Width="560">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding weightdate, Converter={StaticResource DateToStringConverterKey}}" VerticalAlignment="Center"
+                                       Width="150"/>
+                            <TextBlock Text="{Binding userweight}" 
+                                       Width="150"
+                                        FontSize="14" 
+                                        FontStyle="Italic" 
+                                        FontWeight="SemiBold"
+                                        Foreground="Black" VerticalAlignment="Center" />
+                            <Button FontFamily="Segoe MDL2 Assets" Content="&#xE74D;" Tag="{Binding id}" Click="ButtonDeleteAsync_Click" HorizontalAlignment="Right" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
