@@ -14,6 +14,11 @@
     </Page.Resources>
 
     <Grid Width="700" HorizontalAlignment="Left">
+        <Button HorizontalAlignment="Left" Margin="500,11,0,0" VerticalAlignment="Top" Click="ButtonAddWeight_Click">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;"/>
+            </StackPanel>
+        </Button>
         <ListView x:Name="ListViewWeights" Width="365" HorizontalAlignment="Left" Margin="40,50,0,0" 
                   ItemsSource="{Binding WeightSource, ElementName=root}" >
             <ListView.ItemTemplate>
@@ -34,5 +39,29 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <ContentDialog x:Name="AddContentDialog" Title="Add Weight Measurement"
+           PrimaryButtonText="Save" IsPrimaryButtonEnabled="True"
+           CloseButtonText="Cancel">
+            <StackPanel Margin="0,20,0,0">
+                <TextBlock HorizontalAlignment="Center" FontWeight="Bold">Date</TextBlock>
+                <CalendarDatePicker x:Name="CalDatePickerAdd" HorizontalAlignment="Center" Margin="0,10,0,20" />
+                <TextBlock HorizontalAlignment="Center" FontWeight="Bold">Weight</TextBlock>
+                
+                <Grid>
+                    <Button x:Name="ButtonWeightSubtract" Width="32" Height="32" HorizontalAlignment="Left" Margin="30,10,0,0" 
+                            VerticalAlignment="Top" Content="-" Click="ButtonWeightSubstract_Click" FontWeight="Bold" FontSize="14"/>
+                    <Button x:Name="ButtonWeightAdd" HorizontalAlignment="Right" Margin="0,10,30,0" VerticalAlignment="Top" Width="32" Height="32" 
+                            Content="+" Click="ButtonWeightAdd_Click" FontWeight="Bold" FontSize="14"/>
+                    <TextBox x:Name="TextWeight" Width="65" HorizontalAlignment="Center" Margin="0,10,0,0" IsReadOnly="True"/>
+                </Grid>
+            </StackPanel>
+
+        </ContentDialog>
+
+
+
+
+
     </Grid>
 </Page>

@@ -169,7 +169,7 @@ namespace DietTracker_UWP.DL
             return lstWeights;
         }
 
-        public static async void DeleteWeight(int Id, String Token)
+        public static async Task DeleteWeight(int Id, String Token)
         {
             using (var client = new HttpClient())
             {
@@ -180,10 +180,12 @@ namespace DietTracker_UWP.DL
             }
         }
 
-        public static async void AddWeight(int UserId, double UserWeight, DateTime WeightDate, String Token)
+        public static async Task AddWeight(int UserId, double UserWeight, DateTime WeightDate, String Token)
         {
             var content = new StringContent(JsonConvert.SerializeObject(
-                new { userid = UserId, userweight = UserWeight, weightdate = WeightDate }), Encoding.UTF8, "application/json");
+                new { userid = UserId, userweight = UserWeight,
+                    weightdate = WeightDate.Year.ToString() + "-" + WeightDate.Month.ToString().PadLeft(2, '0') + "-" + 
+                    WeightDate.Day.ToString().PadLeft(2, '0')}), Encoding.UTF8, "application/json");
 
             using (var client = new HttpClient())
             {
