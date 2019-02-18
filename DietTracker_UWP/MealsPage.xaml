@@ -40,7 +40,8 @@
                 <local:FoodListControl x:Name="SnackFoodList"/>
             </PivotItem>
         </Pivot>
-        <Button  HorizontalAlignment="Left" Margin="380,11,0,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets">
+        <Button  HorizontalAlignment="Left" Margin="380,11,0,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" 
+                 Click="ButtonAddFavorites_Click">
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;"/>
                 <TextBlock FontFamily="S" Text="Favorite" Margin="5,0,0,0"></TextBlock>

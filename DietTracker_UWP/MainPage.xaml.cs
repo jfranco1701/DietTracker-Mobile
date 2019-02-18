@@ -42,9 +42,7 @@ namespace DietTracker_UWP
             ("weights", typeof(WeightsPage)),
             ("favorites", typeof(FavoritesPage)),
             ("mealadd", typeof(MealAddPage)),
-
-            //("games", typeof(GamesPage)),
-            //("music", typeof(MusicPage)),
+            ("favadd", typeof(MealFavoriteAddPage))
         };
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
@@ -148,6 +146,12 @@ namespace DietTracker_UWP
                 NavView.Header = "Settings";
             }
             else if (ContentFrame.SourcePageType == typeof(MealAddPage))
+            {
+                NavView.SelectedItem = NavView.MenuItems
+                    .OfType<NavigationViewItem>()
+                    .First(n => n.Tag.Equals("meals"));
+            }
+            else if (ContentFrame.SourcePageType == typeof(MealFavoriteAddPage))
             {
                 NavView.SelectedItem = NavView.MenuItems
                     .OfType<NavigationViewItem>()

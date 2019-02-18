@@ -6,9 +6,75 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="800" Height="400">
 
     <Grid>
+        <ListView x:Name="ListViewFavorites" Width="600" HorizontalAlignment="Left" Margin="40,100,0,0" 
+                  ItemsSource="{Binding FavoritesSource, ElementName=root}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
 
+                        <StackPanel Orientation="Horizontal" Width="560">
+                            <CheckBox x:Name="CheckItem" Tag="{Binding id}"/>
+                            <StackPanel Margin="-50,0,0,0">
+                                <TextBlock Text="{Binding foodname}" 
+                                        Margin="0,0,20,5"
+                                        FontSize="14" 
+                                        FontStyle="Italic" 
+                                        FontWeight="SemiBold"
+                                        Foreground="Black" FontFamily="Segoe UI" />
+                                <TextBlock Text="{Binding measure}" 
+                                    Margin="0,0,20,5"
+                                    FontSize="14" 
+                                    Foreground="Black" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="0,0,5,8" Text="Cals: "/>
+                                    <TextBlock Text="{Binding calories}" 
+                                        Margin="0,0,0,8"
+                                        FontSize="14"
+                                        Foreground="Black"  />
+
+                                    <TextBlock Margin="20,0,5,8" Text="Carb: "/>
+                                    <TextBlock Text="{Binding carbs}" 
+                                        Margin="0,0,0,8"
+                                        FontSize="14"
+                                        Foreground="Black" />
+
+                                    <TextBlock Margin="20,0,5,8" Text="Fat: "/>
+                                    <TextBlock Text="{Binding fat}" 
+                                        Margin="0,0,0,8"
+                                        FontSize="14"
+                                        Foreground="Black" />
+
+                                    <TextBlock Margin="20,0,5,8" Text="Pro: "/>
+                                    <TextBlock Text="{Binding protein}" 
+                                        Margin="0,0,0,8"
+                                        FontSize="14"
+                                        Foreground="Black" />
+
+                                    <TextBlock Margin="20,0,5,8" Text="Fbr: "/>
+                                    <TextBlock Text="{Binding fiber}" 
+                                        Margin="0,0,0,8"
+                                        FontSize="14"
+                                        Foreground="Black" />
+
+                                    <TextBlock Margin="20,0,5,8" Text="Sug: "/>
+                                    <TextBlock Text="{Binding sugars}" 
+                                        Margin="0,0,0,8"
+                                        FontSize="14"
+                                        Foreground="Black" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Content="Add Selected" HorizontalAlignment="Left" Margin="350,46,0,0" VerticalAlignment="Top" 
+                Click="ButtonAddSelected_Click"/>
+        
+        <Button Content="Back" HorizontalAlignment="Left" Margin="550,46,0,0" VerticalAlignment="Top" 
+                Click="ButtonBack_Click"/>
+        
     </Grid>
 </Page>

@@ -78,6 +78,15 @@ namespace DietTracker_UWP
             Frame.Navigate(typeof(MealAddPage), parameters);
         }
 
+        void ButtonAddFavorites_Click(object sender, RoutedEventArgs e)
+        {
+            AddMealParams parameters = new AddMealParams();
+            parameters.MealType = ((PivotItem)root.SelectedItem).Header.ToString();
+            parameters.MealDate = CalPickerDate.Date.Value.DateTime;
+
+            Frame.Navigate(typeof(MealFavoriteAddPage), parameters);
+        }
+
         private async void ButtonTotalsAsync_Click(object sender, RoutedEventArgs e)
         {
             MealTotal mealTotal;
