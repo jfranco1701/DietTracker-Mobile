@@ -12,9 +12,9 @@
         <NavigationView PaneDisplayMode="LeftCompact" HorizontalAlignment="Left" VerticalAlignment="Top" 
                         x:Name="NavView" Loaded="NavView_Loaded" ItemInvoked="NavView_ItemInvoked" BackRequested="NavView_BackRequested" Width="800" Height="400">
             <NavigationView.MenuItems>
-                <NavigationViewItem Tag="meals" Icon="Account"  Content="Meals" />
+                <NavigationViewItem Tag="meals" Icon="Calendar"  Content="Meals" />
                 <NavigationViewItem Tag="favorites" Icon="Favorite" Content="Favorites"/>
-                <NavigationViewItem Tag="weights" Icon="Import" Content="Weight"/>
+                <NavigationViewItem Tag="weights" Icon="Contact2" Content="Weight"/>
                 <!--<NavigationViewItem Tag="mealadd" Icon="Import" Content="MealAdd" IsEnabled="False"/>-->
             </NavigationView.MenuItems>
 

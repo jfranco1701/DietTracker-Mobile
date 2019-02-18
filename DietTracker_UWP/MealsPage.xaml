@@ -9,12 +9,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="800" Height="400">
 
     <Grid Width="700" HorizontalAlignment="Left">
-        <CalendarDatePicker x:Name="CalPickerDate" HorizontalAlignment="Left" Margin="97,11,0,0" VerticalAlignment="Top" Grid.Row="0"/>
+        <CalendarDatePicker x:Name="CalPickerDate" HorizontalAlignment="Left" Margin="97,11,0,0" VerticalAlignment="Top" Grid.Row="0" Width="120"/>
         <Button x:Name="ButtonNextDate" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="246,10,0,0" VerticalAlignment="Top" Grid.Row="0" Click="ButtonNext_Click"/>
         <Button x:Name="ButtonPrevDate" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="32,10,0,0" VerticalAlignment="Top" Grid.Row="0" Click="ButtonPrev_Click"/>
-        <Button Content="Add - Search
-                " HorizontalAlignment="Left" Margin="561,11,0,0" VerticalAlignment="Top" Click="ButtonAddItems_Click" 
-                />
+        <Button HorizontalAlignment="Left" Margin="500,11,0,0" VerticalAlignment="Top" Click="ButtonAddItems_Click">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;"/>
+                <TextBlock FontFamily="S" Text="Search" Margin="5,0,0,0"></TextBlock>
+            </StackPanel>
+        </Button>
 
 
 
@@ -37,9 +40,54 @@
                 <local:FoodListControl x:Name="SnackFoodList"/>
             </PivotItem>
         </Pivot>
-        <Button Content="Add - Favorite" HorizontalAlignment="Left" Margin="426,11,0,0" VerticalAlignment="Top"/>
+        <Button  HorizontalAlignment="Left" Margin="380,11,0,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;"/>
+                <TextBlock FontFamily="S" Text="Favorite" Margin="5,0,0,0"></TextBlock>
+            </StackPanel>
+        </Button>
 
-
-
+        <Button  HorizontalAlignment="Left" Margin="650,11,0,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" 
+            Click="ButtonTotalsAsync_Click">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8EF;"/>
+            </StackPanel>
+        </Button>
+        
+        <ContentDialog x:Name="ContentDialogTotals"
+           PrimaryButtonText="Close"
+           CloseButtonText="">
+            <ContentDialog.TitleTemplate>
+                <DataTemplate>
+                    <TextBlock x:Name="TextTotalsHeader">Daily Totals</TextBlock>
+                </DataTemplate>
+            </ContentDialog.TitleTemplate>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Grid>
+                    <TextBlock>Total Calories:</TextBlock>
+                    <TextBlock x:Name="TextTotalCalories" Margin="110,0,0,0"></TextBlock>
+                </Grid>
+                <Grid>
+                    <TextBlock>Total Carbs:</TextBlock>
+                    <TextBlock x:Name="TextTotalCarbs" Margin="110,0,0,0"></TextBlock>
+                </Grid>
+                <Grid>
+                    <TextBlock>Total Protein:</TextBlock>
+                    <TextBlock x:Name="TextTotalProtein" Margin="110,0,0,0"></TextBlock>
+                </Grid>
+                <Grid>
+                    <TextBlock>Total Fat:</TextBlock>
+                    <TextBlock x:Name="TextTotalFat" Margin="110,0,0,0"></TextBlock>
+                </Grid>
+                <Grid>
+                    <TextBlock>Total Fiber:</TextBlock>
+                    <TextBlock x:Name="TextTotalFiber" Margin="110,0,0,0"></TextBlock>
+                </Grid>
+                <Grid>
+                    <TextBlock>Total Sugars:</TextBlock>
+                    <TextBlock x:Name="TextTotalSugars" Margin="110,0,0,0"></TextBlock>
+                </Grid>
+            </StackPanel>
+        </ContentDialog>
     </Grid>
 </Page>

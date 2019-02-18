@@ -176,7 +176,8 @@ namespace DietTracker_UWP.DL
                     new AuthenticationHeaderValue("Bearer", Token);
                 var response =
                     await client.GetStringAsync(BaseURL + "api/meals/" +
-                      "totals/?mealdate=" + MealDate);
+                        "totals/?mealdate=" + MealDate.Year.ToString() + "-" + MealDate.Month.ToString().PadLeft(2, '0') + "-" +
+                        MealDate.Day.ToString().PadLeft(2, '0'));
 
                 objMealTotal = JsonConvert.DeserializeObject<MealTotal>(response);
             }
@@ -184,7 +185,7 @@ namespace DietTracker_UWP.DL
             return objMealTotal;
         }
 
-        public static async void DeleteMeal(int Id, String Token)
+        public static async Task DeleteMeal(int Id, String Token)
         {
             using (var client = new HttpClient())
             {

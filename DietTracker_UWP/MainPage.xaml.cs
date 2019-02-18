@@ -27,6 +27,7 @@ namespace DietTracker_UWP
         public MainPage()
         {
             this.InitializeComponent();
+            NavView.IsBackButtonVisible = NavigationViewBackButtonVisible.Collapsed;
         }
 
         private void ContentFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)

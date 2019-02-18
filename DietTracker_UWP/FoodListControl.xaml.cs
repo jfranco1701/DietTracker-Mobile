@@ -16,6 +16,7 @@ using DietTracker_UWP.BO;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using DietTracker_UWP.DL;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -46,6 +47,16 @@ namespace DietTracker_UWP
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-   
+        public Delegate refreshMethodPointer;
+
+        
+        private async void ButtonDeleteAsync_Click(object sender, RoutedEventArgs e)
+        {
+            int id = Convert.ToInt32(((Button)sender).Tag);
+
+            await DietTrackerAPI.DeleteMeal(id, LocalStore.GetSetting("Token"));
+
+            refreshMethodPointer.DynamicInvoke();
+        }
     }
 }

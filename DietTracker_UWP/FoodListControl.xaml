@@ -7,28 +7,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Width="700" Height="400">
 
     <Grid>
-        <ListView x:Name="ListViewMealItems" Width="600" HorizontalAlignment="Left" Margin="40,50
-                  ,0,0" ItemsSource="{Binding ItemsSource, ElementName=root}" >
+        <ListView x:Name="ListViewMealItems" Width="600" HorizontalAlignment="Left" Margin="40,50,0,0" 
+                  ItemsSource="{Binding ItemsSource, ElementName=root}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding foodname}" 
-                                Margin="20,0,20,5"
-                                FontSize="14" 
-                                FontStyle="Italic" 
-                                FontWeight="SemiBold"
-                                Foreground="Black" />
-                        <TextBlock Text="{Binding measure}" 
-                                Margin="20,0,20,5"
-                                FontSize="14" 
-                                Foreground="Black" />
+                    <StackPanel Width="560">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Width="494">
+                                <TextBlock Text="{Binding foodname}" 
+                                        Margin="20,0,20,5"
+                                        FontSize="14" 
+                                        FontStyle="Italic" 
+                                        FontWeight="SemiBold"
+                                        Foreground="Black" />
+                                <TextBlock Text="{Binding measure}" 
+                                    Margin="20,0,20,5"
+                                    FontSize="14" 
+                                    Foreground="Black" />
+                            </StackPanel>
+                            <Button FontFamily="Segoe MDL2 Assets" Content="&#xE74D;" Tag="{Binding id}" Click="ButtonDeleteAsync_Click"/>
+                        </StackPanel>
 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="20,0,5,8" Text="Cals: "/>
                             <TextBlock Text="{Binding calories}" 
                                 Margin="0,0,0,8"
                                 FontSize="14"
-                                Foreground="Black" />
+                                Foreground="Black"  />
 
                             <TextBlock Margin="20,0,5,8" Text="Carb: "/>
                             <TextBlock Text="{Binding carbs}" 

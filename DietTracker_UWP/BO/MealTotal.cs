@@ -13,5 +13,6 @@ namespace DietTracker_UWP.BO
         public double total_fat { get; set; }
         public double total_protein { get; set; }
         public double total_calories { get; set; }
+        public double total_carbs { get; set; }
     }
 }

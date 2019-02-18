@@ -29,10 +29,19 @@ namespace DietTracker_UWP
         public IList<MealItem> DinnerItems { get; set; }
         public IList<MealItem> SnackItems { get; set; }
 
+        //Allows user control to refresh after a delete
+        private event ListUpdateMethod formFunctionPointer;
+        delegate void ListUpdateMethod();
 
         public MealsPage()
         {
             this.InitializeComponent();
+
+            formFunctionPointer += new ListUpdateMethod(GetMealItemsAsync);
+            BreakfastFoodList.refreshMethodPointer = formFunctionPointer;
+            LunchFoodList.refreshMethodPointer = formFunctionPointer;
+            DinnerFoodList.refreshMethodPointer = formFunctionPointer;
+            SnackFoodList.refreshMethodPointer = formFunctionPointer;
         }
 
         private async void GetMealItemsAsync()
@@ -71,6 +80,22 @@ namespace DietTracker_UWP
             parameters.MealDate = CalPickerDate.Date.Value.DateTime;
 
             Frame.Navigate(typeof(MealAddPage), parameters);
+        }
+
+        private async void ButtonTotalsAsync_Click(object sender, RoutedEventArgs e)
+        {
+            MealTotal mealTotal;
+
+            mealTotal = await DietTrackerAPI.GetMealTotals(CalPickerDate.Date.Value.DateTime, LocalStore.GetSetting("Token"));
+
+            TextTotalCalories.Text = mealTotal.total_calories.ToString();
+            TextTotalCarbs.Text = mealTotal.total_carbs.ToString();
+            TextTotalProtein.Text = mealTotal.total_protein.ToString();
+            TextTotalFat.Text = mealTotal.total_fat.ToString();
+            TextTotalFiber.Text = mealTotal.total_fiber.ToString(); ;
+            TextTotalSugars.Text = mealTotal.total_sugars.ToString();
+
+            await ContentDialogTotals.ShowAsync();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

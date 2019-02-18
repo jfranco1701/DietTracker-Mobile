@@ -130,6 +130,15 @@ namespace DietTracker_UWP
 
             TextQty.Text = Quantity.ToString();
         }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            AddMealParams parameters = new AddMealParams();
+            parameters.MealType = MealType;
+            parameters.MealDate = MealDate;
+
+            Frame.Navigate(typeof(MealsPage), parameters);
+        }
     }
 }
 ;

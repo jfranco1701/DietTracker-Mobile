@@ -77,10 +77,11 @@
 
 
 
-        <Button x:Name="ButtonAdd" Content="Add Selected" HorizontalAlignment="Left" Margin="600,46,0,0" VerticalAlignment="Top" 
+        <Button x:Name="ButtonAdd" Content="Add Selected" HorizontalAlignment="Left" Margin="480,46,0,0" VerticalAlignment="Top" 
                 Click="ShowSaveContentDialogButton_Click"/>
 
-
+        <Button Content="Back" HorizontalAlignment="Left" Margin="650,46,0,0" VerticalAlignment="Top" 
+                Click="ButtonBack_Click"/>
 
         <ContentDialog x:Name="SaveContextDialog" Title="Save Item"
            PrimaryButtonText="Save" IsPrimaryButtonEnabled="True"
