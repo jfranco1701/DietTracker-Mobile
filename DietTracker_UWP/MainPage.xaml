@@ -10,7 +10,8 @@
 
     <Grid>
         <NavigationView PaneDisplayMode="LeftCompact" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                        x:Name="NavView" Loaded="NavView_Loaded" ItemInvoked="NavView_ItemInvoked" BackRequested="NavView_BackRequested" Width="800" Height="400">
+                        x:Name="NavView" Loaded="NavView_Loaded" ItemInvoked="NavView_ItemInvoked" BackRequested="NavView_BackRequested" 
+                        Width="800" Height="400" AlwaysShowHeader="False">
             <NavigationView.MenuItems>
                 <NavigationViewItem Tag="meals" Icon="Calendar"  Content="Meals" />
                 <NavigationViewItem Tag="favorites" Icon="Favorite" Content="Favorites"/>
@@ -18,10 +19,10 @@
                 <!--<NavigationViewItem Tag="mealadd" Icon="Import" Content="MealAdd" IsEnabled="False"/>-->
             </NavigationView.MenuItems>
 
-            <ScrollViewer>
+
                 <Frame x:Name="ContentFrame" Padding="12,0,12,24" IsTabStop="True"
                    NavigationFailed="ContentFrame_NavigationFailed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            </ScrollViewer>
+    
         </NavigationView>
     </Grid>
 </Page>

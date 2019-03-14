@@ -8,21 +8,35 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="800" Height="400">
 
-    <Grid Width="700" HorizontalAlignment="Left">
-        <CalendarDatePicker x:Name="CalPickerDate" HorizontalAlignment="Left" Margin="97,11,0,0" VerticalAlignment="Top" Grid.Row="0" Width="120"/>
-        <Button x:Name="ButtonNextDate" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="246,10,0,0" VerticalAlignment="Top" Grid.Row="0" Click="ButtonNext_Click"/>
-        <Button x:Name="ButtonPrevDate" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="32,10,0,0" VerticalAlignment="Top" Grid.Row="0" Click="ButtonPrev_Click"/>
-        <Button HorizontalAlignment="Left" Margin="500,11,0,0" VerticalAlignment="Top" Click="ButtonAddItems_Click">
+    <Grid Width="700" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+        <StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;"/>
-                <TextBlock FontFamily="S" Text="Search" Margin="5,0,0,0"></TextBlock>
+                <Button x:Name="ButtonPrevDate" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Top" Grid.Row="0" Click="ButtonPrev_Click"/>
+                <CalendarDatePicker x:Name="CalPickerDate" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Top" Grid.Row="0" Width="120"/>
+                <Button x:Name="ButtonNextDate" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Top" Grid.Row="0" Click="ButtonNext_Click"/>
+                <Button HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Top" Click="ButtonAddItems_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;"/>
+                        <TextBlock FontFamily="S" Text="Search" Margin="5,0,0,0"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button  HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" 
+                    Click="ButtonAddFavorites_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;"/>
+                        <TextBlock FontFamily="S" Text="Favorite" Margin="5,0,0,0"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button  HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" 
+                    Click="ButtonTotalsAsync_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8EF;"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
-        </Button>
-
-
-
-        <Pivot x:Name="root" Grid.Row="1" Height="300">
-            <PivotItem Header="Breakfast">
+ 
+            <Pivot x:Name="root" Grid.Row="1"  Margin="20,0,0,0">
+            <PivotItem Header="Breakfast" VerticalAlignment="Stretch">
                 <local:FoodListControl x:Name="BreakfastFoodList"/>
 
             </PivotItem>
@@ -40,20 +54,7 @@
                 <local:FoodListControl x:Name="SnackFoodList"/>
             </PivotItem>
         </Pivot>
-        <Button  HorizontalAlignment="Left" Margin="380,11,0,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" 
-                 Click="ButtonAddFavorites_Click">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;"/>
-                <TextBlock FontFamily="S" Text="Favorite" Margin="5,0,0,0"></TextBlock>
-            </StackPanel>
-        </Button>
 
-        <Button  HorizontalAlignment="Left" Margin="650,11,0,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" 
-            Click="ButtonTotalsAsync_Click">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8EF;"/>
-            </StackPanel>
-        </Button>
         
         <ContentDialog x:Name="ContentDialogTotals"
            PrimaryButtonText="Close"
@@ -90,5 +91,6 @@
                 </Grid>
             </StackPanel>
         </ContentDialog>
+        </StackPanel>
     </Grid>
 </Page>

@@ -17,6 +17,7 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using DietTracker_UWP.DL;
+using Windows.UI;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
