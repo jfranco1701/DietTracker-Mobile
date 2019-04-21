@@ -228,8 +228,8 @@ namespace DietTracker_UWP.DL
             }
         }
 
-        public static async Task AddFavorite(int UserId, String FoodName, int CaloriesCount, int FatCount, int CarbsCount,
-            int FiberCount, int SugarsCount, int ProteinCount, String MeasureAmt, String Token)
+        public static async Task AddFavorite(int UserId, String FoodName, double CaloriesCount, double FatCount, double CarbsCount,
+            double FiberCount, double SugarsCount, double ProteinCount, String MeasureAmt, String Token)
         {
             var content = new StringContent(JsonConvert.SerializeObject(
                  new
@@ -249,7 +249,7 @@ namespace DietTracker_UWP.DL
             {
                 client.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Bearer", Token);
-                var result = await client.PostAsync(BaseURL + "api/Favorites/", content);
+                var result = await client.PostAsync(BaseURL + "api/favorites/", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
             }
         }

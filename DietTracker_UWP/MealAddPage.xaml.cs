@@ -84,9 +84,19 @@ namespace DietTracker_UWP
             ContentDialogResult result = await SaveContextDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                await DietTrackerAPI.AddMeal(Convert.ToInt32(LocalStore.GetSetting("UserId")), SelectedItem.FoodName, SelectedItem.Calories,
-                SelectedItem.Fat, SelectedItem.Carbs, SelectedItem.Fiber, SelectedItem.Sugars, SelectedItem.Protein, SelectedItem.Serving,
-                MealDate, MealType, Convert.ToInt32(TextQty.Text), LocalStore.GetSetting("Token"));
+                for(int x=0; x < Convert.ToInt32(TextQty.Text); x++)
+                {
+                    await DietTrackerAPI.AddMeal(Convert.ToInt32(LocalStore.GetSetting("UserId")), SelectedItem.FoodName, SelectedItem.Calories,
+                    SelectedItem.Fat, SelectedItem.Carbs, SelectedItem.Fiber, SelectedItem.Sugars, SelectedItem.Protein, SelectedItem.Serving,
+                    MealDate, MealType, Convert.ToInt32(TextQty.Text), LocalStore.GetSetting("Token"));
+                }
+
+                if (CheckAddFavorites.IsChecked.Value)
+                {
+                    await DietTrackerAPI.AddFavorite(Convert.ToInt32(LocalStore.GetSetting("UserId")), SelectedItem.FoodName, SelectedItem.Calories,
+                    SelectedItem.Fat, SelectedItem.Carbs, SelectedItem.Fiber, SelectedItem.Sugars, SelectedItem.Protein, SelectedItem.Serving,
+                    LocalStore.GetSetting("Token"));
+                }
 
                 AddMealParams parameters = new AddMealParams();
                 parameters.MealType = MealType;
