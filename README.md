@@ -20,14 +20,16 @@ The mobile app was developed in
 
 # Software
 
-## Backend
+### Backend
 The backend for the application is a REST API that was developed using Django and the Django REST Framework.  The API makes use of Json Web Tokens (JWT) to secure backend.  It is currently being hosted on AWS and remains unchanged from when it was created in the original project.
 
-There is one known issue with the backend.  There is a bug in the endpoint that calaculates the daily totals.  The total carbs count is always returned as 0.
+#### Known Issues
+There is one known issue with the backend.  There is a bug in the endpoint that calaculates the daily totals.  The total carbs count is always returned as 0.  Due to time constraints, this issue was not corrrect.  All focus was given to the mobile application.
 
+#### Repository
 The repository for the backend can be found here: https://github.com/jfranco1701/DietTracker-backend.
 
-## Frontend
+### Frontend
 
 The mobile version is a Universal Windows Platform application that can be run on a Windows 10 computer or a device running Windows IOT. 
 
