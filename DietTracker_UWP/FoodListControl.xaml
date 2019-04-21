@@ -24,7 +24,7 @@
                                     FontSize="16"
                                     FontStyle="Italic" 
                                     FontWeight="SemiBold"
-                                    Foreground="Black" />
+                                    Foreground="White" />
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Padding="0,0,0,0" Text="Measure: "/>
                             <TextBlock Text="{Binding measure}" 
@@ -47,25 +47,25 @@
                             <TextBlock Text="{Binding fat}" 
                                 Padding="5,0,10,0"
                                 FontSize="14"
-                                Foreground="Black" />
+                                Foreground="White" />
 
                             <TextBlock Padding="10,0,0,0" Text="Pro: "/>
                             <TextBlock Text="{Binding protein}" 
                                 Padding="5,0,10,0"
                                 FontSize="14"
-                                Foreground="Black" />
+                                Foreground="White" />
 
                             <TextBlock Padding="10,0,0,0" Text="Fbr: "/>
                             <TextBlock Text="{Binding fiber}" 
                                 Padding="5,0,10,0"
                                 FontSize="14"
-                                Foreground="Black" />
+                                Foreground="White" />
 
                             <TextBlock Padding="10,0,0,0" Text="Sug: "/>
                             <TextBlock Text="{Binding sugars}" 
                                 Padding="5,0,10,0"
                                 FontSize="14"
-                                Foreground="Black" />
+                                Foreground="White" />
 
                         </StackPanel>
                     </StackPanel>

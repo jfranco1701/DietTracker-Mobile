@@ -64,5 +64,10 @@ namespace DietTracker_UWP
             }
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
+        }
     }
 }

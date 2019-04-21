@@ -8,9 +8,10 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="800" Height="400">
 
-    <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="150,50,0,0" Text="Settings" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="31,30,0,0" Text="TextBox" VerticalAlignment="Top"/>
-
+    <Grid Loading="Grid_Loading">
+        <Button Content="Terminate App" HorizontalAlignment="Left" Margin="597,329,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="56,33,0,0" Text="About" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,146,0,0" Text="DietTracker Mobile" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" SelectionChanged="TextBlock_SelectionChanged"/>
+        <TextBlock x:Name="txtVersion" HorizontalAlignment="Center" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Center"/>
     </Grid>
 </Page> 

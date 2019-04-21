@@ -19,6 +19,8 @@
                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;"/>
             </StackPanel>
         </Button>
+        <TextBlock Text="Date" Margin="50,20,0,0" />
+        <TextBlock Text="Weight (lbs)" Margin="200,20,0,0" />
         <ListView x:Name="ListViewWeights" Width="365" HorizontalAlignment="Left" Margin="40,50,0,0" 
                   ItemsSource="{Binding WeightSource, ElementName=root}" >
             <ListView.ItemTemplate>
@@ -32,7 +34,7 @@
                                         FontSize="14" 
                                         FontStyle="Italic" 
                                         FontWeight="SemiBold"
-                                        Foreground="Black" VerticalAlignment="Center" />
+                                        Foreground="White" VerticalAlignment="Center" />
                             <Button FontFamily="Segoe MDL2 Assets" Content="&#xE74D;" Tag="{Binding id}" Click="ButtonDeleteAsync_Click" HorizontalAlignment="Right" />
                         </StackPanel>
                     </StackPanel>

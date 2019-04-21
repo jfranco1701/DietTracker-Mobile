@@ -8,16 +8,18 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="800" Height="404">
 
-    <Grid>
+    <Grid BorderThickness="0,0,3,0">
+        <Border BorderBrush="White" HorizontalAlignment="Left" Height="346" Margin="146,10,0,0" VerticalAlignment="Top" Width="525" BorderThickness="1,1,1,1"/>
         <TextBlock HorizontalAlignment="Center" Margin="0,33,0,0" Text="DietTracker Mobile" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"/>
-        <TextBox x:Name="TextBoxEmail" PlaceholderText="Enter Email" HorizontalAlignment="Center" Margin="0,146,0,0" Text="" VerticalAlignment="Top" Width="271"/>
-        <PasswordBox x:Name="PassBoxPassword" HorizontalAlignment="Center" PlaceholderText="Enter Password" Margin="0,225,0,0" VerticalAlignment="Top" Width="271"/>
-        <TextBlock HorizontalAlignment="Left" Margin="265,122,0,0" Text="Username" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="265,202,0,0" Text="Password" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxEmail" PlaceholderText="Enter Email" HorizontalAlignment="Left" Margin="188,151,0,0" Text="" VerticalAlignment="Top" Width="271"/>
+        <PasswordBox x:Name="PassBoxPassword" HorizontalAlignment="Left" PlaceholderText="Enter Password" Margin="188,230,0,0" VerticalAlignment="Top" Width="271"/>
+        <TextBlock HorizontalAlignment="Left" Margin="189,127,0,0" Text="Username" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="189,207,0,0" Text="Password" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="TextInvalid" HorizontalAlignment="Center" Margin="0,84,0,0" Text="Invalid Username or Password" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFE61616"/>
         <ProgressRing x:Name="ProgressLogin" HorizontalAlignment="Left" Margin="266,291,0,0" VerticalAlignment="Top" Width="30" Height="30" />
-        <Button x:Name="ButtonLogin" Content="Login" Margin="481,291,0,0" VerticalAlignment="Top" Click="ButtonLogin_ClickAsync" HorizontalAlignment="Left"/>
-        <TextBlock x:Name="TextLogin" HorizontalAlignment="Left" Margin="325,294,0,0" Text="Logging In..." TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="20" Foreground="#FF686767"/>
+        <Button x:Name="ButtonLogin" Content="Login" Margin="529,151,0,0" VerticalAlignment="Top" Click="ButtonLogin_ClickAsync" HorizontalAlignment="Left" Width="98"/>
+        <TextBlock x:Name="TextLogin" HorizontalAlignment="Left" Margin="337,299,0,0" Text="Logging In..." TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="20" Foreground="#FF686767"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="529,230,0,0" VerticalAlignment="Top" Width="98" Click="Button_Click"/>
 
     </Grid>
 </Page>

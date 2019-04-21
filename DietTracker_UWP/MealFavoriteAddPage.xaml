@@ -22,47 +22,47 @@
                                         FontSize="14" 
                                         FontStyle="Italic" 
                                         FontWeight="SemiBold"
-                                        Foreground="Black" FontFamily="Segoe UI" />
+                                        Foreground="White" FontFamily="Segoe UI" />
                                 <TextBlock Text="{Binding measure}" 
                                     Margin="0,0,20,5"
                                     FontSize="14" 
-                                    Foreground="Black" />
+                                    Foreground="White" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="0,0,5,8" Text="Cals: "/>
                                     <TextBlock Text="{Binding calories}" 
                                         Margin="0,0,0,8"
                                         FontSize="14"
-                                        Foreground="Black"  />
+                                        Foreground="White"  />
 
                                     <TextBlock Margin="20,0,5,8" Text="Carb: "/>
                                     <TextBlock Text="{Binding carbs}" 
                                         Margin="0,0,0,8"
                                         FontSize="14"
-                                        Foreground="Black" />
+                                        Foreground="White" />
 
                                     <TextBlock Margin="20,0,5,8" Text="Fat: "/>
                                     <TextBlock Text="{Binding fat}" 
                                         Margin="0,0,0,8"
                                         FontSize="14"
-                                        Foreground="Black" />
+                                        Foreground="White" />
 
                                     <TextBlock Margin="20,0,5,8" Text="Pro: "/>
                                     <TextBlock Text="{Binding protein}" 
                                         Margin="0,0,0,8"
                                         FontSize="14"
-                                        Foreground="Black" />
+                                        Foreground="White" />
 
                                     <TextBlock Margin="20,0,5,8" Text="Fbr: "/>
                                     <TextBlock Text="{Binding fiber}" 
                                         Margin="0,0,0,8"
                                         FontSize="14"
-                                        Foreground="Black" />
+                                        Foreground="White" />
 
                                     <TextBlock Margin="20,0,5,8" Text="Sug: "/>
                                     <TextBlock Text="{Binding sugars}" 
                                         Margin="0,0,0,8"
                                         FontSize="14"
-                                        Foreground="Black" />
+                                        Foreground="White" />
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
