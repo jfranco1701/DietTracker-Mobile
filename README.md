@@ -5,7 +5,7 @@ DietTracker is an application that is used as a diary to track both consumed foo
 
 # Background
 
-DietTracker was orginally developed for the class CYBR 8470 - Secure Web Developlment.  It consisted of a web application and a REST API. The DietTracker Mobile application was purposed as an independent study project.  The goal of this project was to develop an application that builds upon the previous work.  The proposal called for a Raspberry Pi with an attached touch screen to be used as the hardware and for Windows Iot to be used for the operating system. 
+DietTracker was orginally developed for the class CYBR 8470 - Secure Web Developlment.  It consisted of a web application and a REST API. The DietTracker Mobile application was proposed as an independent study project.  The goal of this project was to develop an application that builds upon the previous work.  The proposal called for a Raspberry Pi with an attached touch screen to be used as the hardware and for Windows Iot to be used for the operating system. 
 
 # Software
 
@@ -27,7 +27,13 @@ The frontend application is also deployed with a SQLite database that contains a
 
 # Hardware
 
-The  
+This project makes use of a Raspberry PI 3 and a 7" touchscreen panel. Windows IOT build xxxx is installed as the operating system.
+
+Note: Windows IOT build xxxxx is not compatible with the Raspbery PI 3B.  This discovered the hard way.  That version of Windows IOT is compatabile with late model Raspbery PI 2 devices and early model 3 devices.
+
+# Deployment
+
+
 
 
 
