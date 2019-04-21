@@ -1,11 +1,11 @@
-# DietTracker-Mobile
+# DietTracker Mobile
 
-DietTracker is an application that is used to track a user's daily intake of food and beverages. 
+DietTracker is an application that is used as a diary to track both consumed food items and weight.  The app makes use of the USDA Food Composition database to provide nutrition information and allow accurate tracking of food consumed each day.  A daily calander allows for entry of food items into four seperate meals (breakfast, lunch, dinner and snack).  Any items found in a search of the food composition database can also be added to a stored list of favorite foods that allows for eaiser retrevial in the future.
 
 
 # Background
 
-DietTracker was orginally developed as a web application with a REST API on the backend.  DietTracker Mobile adds a mobile based application that makes use of the same API.
+DietTracker was orginally developed for the class CYBR 8470 - Secure Web Developlment.  It consisted of a web application and a REST API. The DietTracker Mobile application was purposed as an independent study project.  The goal of this project was to develop an application that builds upon the previous work.  The proposal called for a Raspberry Pi with an attached touch screen to be used as the hardware and for Windows Iot to be used for the operating system. 
 
 # Software
 
@@ -27,7 +27,7 @@ The frontend application is also deployed with a SQLite database that contains a
 
 # Hardware
 
-
+The  
 
 
 
