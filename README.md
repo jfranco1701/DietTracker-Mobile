@@ -40,10 +40,10 @@ Note: Windows IOT build xxxxx is not compatible with the Raspbery PI 3B.  This d
 # Architecture Diagrams
 
 ### System Context Diagram
-<img src="https://github.com/jfranco1701/DietTracker-mobile/master/Context_Diagram.png" width="65%">
+<img src="https://github.com/jfranco1701/DietTracker-Mobile/blob/master/Context_Diagram.png" width="65%">
 
 ### Container Diagram
-<img src="https://github.com/jfranco1701/DietTracker-mobile/master/docs/Container Diagram.png" width="100%">
+<img src="https://https://github.com/jfranco1701/DietTracker-Mobile/blob/master/Container_Diagram.png" width="100%">
 
 ### Single-Page Application Component Diagram
 <img src="https://github.com/jfranco1701/DietTracker/blob/master/docs/SPA Component Diagram.png" width="100%">
