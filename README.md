@@ -6,6 +6,17 @@ The mobile version is a Universal Windows Platform application that can be run o
 
 The application contains a local copy of the USDA Food Composition database.  This data is stored in a SQLite database and deployed along with the app.  
 
+# Architecture Diagrams
+
+### System Context Diagram
+<img src="https://github.com/jfranco1701/DietTracker/blob/master/docs/System Context Diagram.jpg" width="65%">
+
+### Container Diagram
+<img src="https://github.com/jfranco1701/DietTracker/blob/master/docs/Container Diagram.png" width="100%">
+
+### Single-Page Application Component Diagram
+<img src="https://github.com/jfranco1701/DietTracker/blob/master/docs/SPA Component Diagram.png" width="100%">
+
 
 
 
