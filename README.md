@@ -33,9 +33,14 @@ Note: Windows IOT build xxxxx is not compatible with the Raspbery PI 3B.  This d
 
 # Deployment
 
+Typically a UWP application would be installed from the Windows Store.  This will not cover the process for submitting to the store, but will show how to "side load" the application directly to a Windows 10.
 
-
-
+1. Activate Developer Mode from the "For developers" settings page. Select "Developer mode" and click the Yes button.
+2. Copy the application folders to the target device.
+3. Open the "\*_Test" folder.
+4. Right-click the file **Add-AppDevPackage.ps1** and select **Run with PowerShell**.
+5. Follow the prompts and the application will be installed.
+6. The application will be found in the Start Menu.
 
 # Architecture Diagrams
 
@@ -47,11 +52,3 @@ Note: Windows IOT build xxxxx is not compatible with the Raspbery PI 3B.  This d
 
 ### Single-Page Application Component Diagram
 <img src="https://github.com/jfranco1701/DietTracker-Mobile/blob/master/Component_Diagram.png" width="100%">
-
-
-
-
-
-
-
-
